@@ -1,63 +1,30 @@
 <template>
-<div class="wrapper">
-    <vueper-slides
-  class="no-shadow"
-  :visible-slides="3"
-  slide-multiple
-  :gap="3"
-  :slide-ratio="1 / 4"
-  :dragging-distance="100"
-  :breakpoints="{ 800: { visibleSlides: 2, slideMultiple: 2 } }">
 
-  <vueper-slide 
-    v-for="post in posts.results" 
-    :key="post"
-    :content="post.original_title"
-    :style="'background-image:' + `url(https://image.tmdb.org/t/p/original${post.backdrop_path})`"/>
+<h2>{{ title }}</h2>
 
+<div class="slidde">
 
-
-</vueper-slides>
+    <card-netflix />
 </div>
-
 
 </template>
 
 <script>
-
-import { VueperSlides, VueperSlide } from 'vueperslides'
-import 'vueperslides/dist/vueperslides.css'
-
+import cardNetflix from './Card.vue';
 
 export default {
+    props: ['title'],
     name: 'carousel-netflix',
     components: {
-        // Card,
-        VueperSlides,
-        VueperSlide,
-
-
-    },
-    methods: {
-        async getData() {
-            try {
-                let res = await fetch('https://api.themoviedb.org/3/movie/popular?api_key=49ecd4647f56c9ac5496c71a9cfe5ba9');
-                this.posts = await res.json();
-            } catch (error) {
-                console.log(error);
-            }
-        }
+        cardNetflix,
     },
     data() {
         return {
-            posts: [],
+            textHeader: ""
         }
-    },
-    mounted() {
-        this.getData();
     }
-
 }
+   
 
 
 </script>
@@ -65,17 +32,28 @@ export default {
 <style lang="scss" scoped>
 
 
+h2 {
+    margin: 0 24px;
+}
 .wrapper {
     width: 95%;
     margin: 0 auto;
 }
 
-.vueperslide {
-    font-size: 2rem;
+
+.slidde {
+    width: auto;
+    height: 500px;
     display: flex;
-    flex-direction: column;
-    justify-content: end;
+    align-items: center;
+    flex-direction: row;
+    overflow-x: scroll;
 }
 
+
+
+.slidde::-webkit-scrollbar {
+    opacity: 0;
+}
 
 </style>
