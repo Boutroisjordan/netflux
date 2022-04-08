@@ -1,34 +1,22 @@
-// https://www.youtube.com/watch?v=qo4XzJMEMN4 vue3 js carousel
-
 <template>
-
-
 <h1>NETFLIX</h1>
 
-<h2>Most popular Movies</h2>
-<carousel-netflix />
-<!-- <card /> -->
 
-
-
+<carousel-netflix title="Most Popular Movie" />
+<carousel-netflix title="Horror" />
+<carousel-netflix title="Comedy" />
 
 
 </template>
 
 <script>
 
-// import Card from './components/Card.vue'
 import carouselNetflix from './components/carouselNetflix.vue'
-
-
-
-
 
 
 export default {
   name: 'App',
   components: {
-    // Card,
     carouselNetflix,
   },
 }
@@ -45,6 +33,7 @@ body {
   color: #fff;
   margin-top: 60px;
   width: 100%;
+  height: auto;
 }
 
 h1 {
